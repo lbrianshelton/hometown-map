@@ -10,12 +10,14 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 	<style>
 		body {
 			margin: 0;
 			padding: 0;
-			background: #f5f5f5;
+			background: #31FCF4;
 			font-family: "Noto Sans", sans-serif;
 			color: #3d3d3d;
 		}
@@ -26,12 +28,12 @@
 		}
 
 		h1 {
-			font-family: Lora, serif;
+			font-family: 'Roboto', sans-serif;
 			letter-spacing: .04em;
 		}
 
 		h2 {
-			font-family: Lora, serif;
+			font-family: 'Poiret One', cursive;
 			letter-spacing: .04em;
 		}
 
@@ -57,6 +59,14 @@
 		li {
 			margin: 10px 0
 		}
+
+		/*
+		#img-fill {
+			width: 100%;
+			height: auto;
+			margin: 10px 0;
+		}
+		*/
 
 		#map {
 			width: 100%;
@@ -135,85 +145,120 @@
 
 		// variables referencing data values
 		// declares variables for point 1 popup
+		/*
 		var city1Name = "Miami Beach",
 			city1Coords = [25.781844, -80.131335],
 			city1Pop = 92307,
 			city1Capital = false,
 			city1State = "Florida";
+		*/
 
 		// declares variables for city 2 popup
-		var city2Name = "Aventura",
+		/*var city2Name = "Aventura",
 			city2Coords = [25.964444, -80.135833],
 			city2Pop = 38202,
 			city2Capital = false,
 			city2State = "Florida";
+		*/
 
 		// declares variables for city 3 popup
-		var city3Name = "Hialeah",
+		/*var city3Name = "Hialeah",
 			city3Coords = [25.860556, -80.293889],
 			city3Pop = 239673,
 			city3Capital = false,
 			city3State = "Florida";
+		*/
 
 		// arrays of data
+		/*
 		var cities = [city1Name, city2Name, city3Name],
 			coords = [city1Coords, city2Coords, city3Coords],
 			populations = [city1Pop, city2Pop, city3Pop],
 			capitals = [city1Capital, city2Capital, city3Capital],
 			states = [city1State, city2State, city3State];
+		*/
 
-		// ADDING FIRST MARKER TO MAP
+		// declare locations array
+		var nameLocation = ["Miami Beach", "Aventura", "Hialeah"]
 
-		// creating a string of the Popup content
-		// call on array values using the appropriate index value for each MARKER
-		// nothing appears in map box when <img> is added to the popup string
-		var city1Popup = "<b>" + cities[0] + "</b>" +
-			"<br><b>population</b>: " + populations[0]; // + <img src="https://en.wikipedia.org/wiki/File:Flag_of_Florida.svg" alt="Florida sate flag" class="img-fill">;//
+		// declare population array
+		var cityPopulation = [92307, 38202, 239673]
 
-		// if city is a capital city
-		if (capitals[0] == true) {
-			// concatenate a string to the existing string value
-			city1Popup += "<br>Capital of " + states[0];
+		// declare coordiantes array
+		var coordinateLocation = [
+			[25.781844, -80.131335],
+			[25.964444, -80.135833],
+			[25.860556, -80.293889]
+		]
+
+		// for loop that creates popups -- runs through the nameLocation, cityPopulation, and coordinateLocation arrays. Pulls together the coordinates and information to display in popup marker.
+		for (var i = 0; i < nameLocation.length; i++) {
+			var nameCity = nameLocation[i];
+			var cityCoordinate = coordinateLocation[i];
+			var cityPops = cityPopulation[i];
+			var locationPopup = "<b>" + nameCity + "</b><br>" +
+				"<b>population</b>: " + cityPops + "</b><br>"
+				/*+ < img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/SouthBeachMiamiBeach.jpg/1920px-SouthBeachMiamiBeach.jpg"
+			alt = "Miami Beach, Wikipedia"
+			id = "img-fill" > */ ;
+			L.marker(coordinateLocation[i]).addTo(map)
+				.bindPopup(locationPopup);
 		}
 
-		// create the Leaflet marker using the coordinates
-		L.marker(coords[0])
-			.addTo(map) // add it to the map
-			.bindPopup(city1Popup); // bind the Popup
+		/* -- Code from Lab 02 --
+				// ADDING FIRST MARKER TO MAP
 
-		// ADDING SECOND MARKER TO MAP
+				// creating a string of the Popup content
+				// call on array values using the appropriate index value for each MARKER
+				// nothing appears in map box when <img> is added to the popup string
+				var city1Popup = "<b>" + cities[0] + "</b>" +
+					"<br><b>population</b>: " + populations[0]; // + <img src="https://en.wikipedia.org/wiki/File:Flag_of_Florida.svg" alt="Florida sate flag" class="img-fill">;//
 
-		// creating a string of the Popup content
-		var city2Popup = "<b>" + cities[1] + "</b>" +
-			"<br><b>population</b>: " + populations[1];
+				// if city is a capital city
+				if (capitals[0] == true) {
+					// concatenate a string to the existing string value
+					city1Popup += "<br>Capital of " + states[0];
+				}
 
-		// if city is a capital city
-		if (capitals[1] == true) {
-			// concatenate a string to the existing string value
-			city2Popup += "<br>Capital of " + states[1];
-		}
+				// create the Leaflet marker using the coordinates
+				L.marker(coords[0])
+					.addTo(map) // add it to the map
+					.bindPopup(city1Popup); // bind the Popup
 
-		// create the Leaflet marker using the coordinates
-		L.marker(coords[1])
-			.addTo(map) // add it to the map
-			.bindPopup(city2Popup); // bind the Popup
+				// ADDING SECOND MARKER TO MAP
 
-		// ADDING Third MARKER TO MAP
+				// creating a string of the Popup content
+				var city2Popup = "<b>" + cities[1] + "</b>" +
+					"<br><b>population</b>: " + populations[1];
 
-		// creating a string of the Popup content
-		var city3Popup = "<b>" + cities[2] + "</b>" +
-			"<br><b>population</b>: " + populations[2];
+				// if city is a capital city
+				if (capitals[1] == true) {
+					// concatenate a string to the existing string value
+					city2Popup += "<br>Capital of " + states[1];
+				}
 
-		// if city is a capital city
-		if (capitals[2] == true) {
-			// concatenate a string to the existing string value
-			city1Popup += "<br>Capital of " + states[2];
-		}
+				// create the Leaflet marker using the coordinates
+				L.marker(coords[1])
+					.addTo(map) // add it to the map
+					.bindPopup(city2Popup); // bind the Popup
 
-		// create the Leaflet marker using the coordinates
-		L.marker(coords[2])
-			.addTo(map) // add it to the map
-			.bindPopup(city3Popup); // bind the Popup
+				// ADDING Third MARKER TO MAP
+
+				// creating a string of the Popup content
+				var city3Popup = "<b>" + cities[2] + "</b>" +
+					"<br><b>population</b>: " + populations[2];
+
+				// if city is a capital city
+				if (capitals[2] == true) {
+					// concatenate a string to the existing string value
+					city1Popup += "<br>Capital of " + states[2];
+				}
+
+				// create the Leaflet marker using the coordinates
+				L.marker(coords[2])
+					.addTo(map) // add it to the map
+					.bindPopup(city3Popup); // bind the Popup
+		*/
 	</script>
 
 </body>
