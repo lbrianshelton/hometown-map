@@ -60,13 +60,13 @@
 			margin: 10px 0
 		}
 
-		/*
-		#img-fill {
+		
+		.img-fill {
 			width: 100%;
 			height: auto;
 			margin: 10px 0;
 		}
-		*/
+		
 
 		#map {
 			width: 100%;
@@ -198,9 +198,7 @@
 			var cityPops = cityPopulation[i];
 			var locationPopup = "<b>" + nameCity + "</b><br>" +
 				"<b>population</b>: " + cityPops + "</b><br>"
-				/*+ < img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/SouthBeachMiamiBeach.jpg/1920px-SouthBeachMiamiBeach.jpg"
-			alt = "Miami Beach, Wikipedia"
-			id = "img-fill" > */ ;
+				+ '<img src = "https://media-cdn.tripadvisor.com/media/photo-s/0c/da/2a/ea/photo2jpg.jpg" alt = "Miami Beach, Wikipedia" class = "img-fill" >';
 			L.marker(coordinateLocation[i]).addTo(map)
 				.bindPopup(locationPopup);
 		}
