@@ -193,6 +193,12 @@
 			[25.860556, -80.293889]
 		]
 
+		// Group locations into categories for symbology
+		const typeLocation = ["Type 1", "Type 2", "Type 3"];
+
+		// URL for custom icon svg
+		const typeIconURL = ["../svgs/svgs_01/beach-15.svg", "../svgs/svgs_02/home-15.svg", "../svgs/svgs_04/town-hall-15.svg"];
+
 		// for loop that creates popups -- runs through the nameLocation, cityPopulation, and coordinateLocation arrays. Pulls together the coordinates and information to display in popup marker.
 		for (var i = 0; i < nameLocation.length; i++) {
 			var nameCity = nameLocation[i];
