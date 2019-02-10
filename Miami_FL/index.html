@@ -1,5 +1,3 @@
-// test test test
-
 <!DOCTYPE html>
 <html>
 
@@ -199,17 +197,64 @@
 		// URL for custom icon svg
 		const typeIconURL = ["../svgs/svgs_01/beach-15.svg", "../svgs/svgs_02/home-15.svg", "../svgs/svgs_04/town-hall-15.svg"];
 
-		// for loop that creates popups -- runs through the nameLocation, cityPopulation, and coordinateLocation arrays. Pulls together the coordinates and information to display in popup marker.
-		for (var i = 0; i < nameLocation.length; i++) {
-			var nameCity = nameLocation[i];
-			var cityCoordinate = coordinateLocation[i];
-			var cityPops = cityPopulation[i];
-			var locationPopup = "<b>" + nameCity + "</b><br>" +
-				"<b>population</b>: " + cityPops + "</b><br>"
-				+ '<img src = "https://media-cdn.tripadvisor.com/media/photo-s/0c/da/2a/ea/photo2jpg.jpg" alt = "Miami Beach, Wikipedia" class = "img-fill" >';
-			L.marker(coordinateLocation[i]).addTo(map)
+		// Iterate through array using indexes to access values
+		for (let i = 0; i < nameLocation.length; i++) {
+
+			// Build the location popup
+			let locationPopup = `<h2>${nameLocation[i]}</h2> ${detailsLocation[i]}`;
+
+			// Build Leaflet icon by calling a function to determine type of location
+			let iconLocation = createIcon(typeLocation[i]); // Function call
+
+			L.marker(coordinatesLocation[i], {
+					icon: iconLocation // Insert returned function value
+				})
+				.addTo(map)
 				.bindPopup(locationPopup);
-		}
+		};
+
+		// Function to determine type of location and return appropriate Leaflet icon object
+
+		function createIcon(typeOfLocation) {
+			let iconURL = "", // declare the iconURL
+				iconSize = 30; // create default size
+
+			if (typeOfLocation == "Type 1") {
+				iconURL = typeIconURL[0];
+			} else(typeOfLocation == "Type 2") {
+				iconURL = typeIconURL[1];
+				iconSize = 40;
+			};
+
+			// Create a Leaflet icon object
+			let result = L.icon({
+				iconUrl: iconURL,
+				iconSize: iconSize,
+				popupAnchor: [0, -15] // Center of your icon is [0,0]
+			});
+
+			// Function returns a properly formatted Leaf icon object to place on your map
+			return result;
+
+		};
+
+		/* -- Code from Lab 03 --
+				//	***
+				//  ***Correct code for adding an image to a popup***
+				//  ***
+				// for loop that creates popups -- runs through the nameLocation, cityPopulation, and coordinateLocation arrays. Pulls together the coordinates and information to display in popup marker.
+				for (var i = 0; i < nameLocation.length; i++) {
+					var nameCity = nameLocation[i];
+					var cityCoordinate = coordinateLocation[i];
+					var cityPops = cityPopulation[i];
+					var locationPopup = "<b>" + nameCity + "</b><br>" +
+						"<b>population</b>: " + cityPops + "</b><br>"
+						+ '<img src = "https://media-cdn.tripadvisor.com/media/photo-s/0c/da/2a/ea/photo2jpg.jpg" alt = "Miami Beach, Wikipedia" class = "img-fill" >';
+					L.marker(coordinateLocation[i]).addTo(map)
+						.bindPopup(locationPopup);
+				}
+		*/
+
 
 		/* -- Code from Lab 02 --
 				// ADDING FIRST MARKER TO MAP
