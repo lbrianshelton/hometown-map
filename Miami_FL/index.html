@@ -111,7 +111,6 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet-src.js"></script>
 	<script>
-		// This is a comment in JavaScript
 
 		// map options
 		var options = {
@@ -191,12 +190,13 @@
 			[25.860556, -80.293889]
 		]
 
+
 		/* Lab 04 Challenge */
 		// Group locations into categories for symbology
-		const typeLocation = ["Type 1", "Type 2", "Type 3"];
+/*		const typeLocation = ["Type 1", "Type 2", "Type 3"];
 
 		// URL for custom icon svg
-		const typeIconURL = ["../svgs/svgs_01/beach-15.svg", "../svgs/svgs_02/home-15.svg", "../svgs/svgs_04/town-hall-15.svg"];
+		const typeIconURL = ["svgs/svgs_01/beach-15.svg", "svgs/svgs_02/home-15.svg", "svgs/svgs_04/town-hall-15.svg"];
 
 		// Iterate through array using indexes to access values
 		for (let i = 0; i < nameLocation.length; i++) {
@@ -238,8 +238,8 @@
 			return result;
 
 		};
-
-		/* -- Code from Lab 03 --
+*/
+		 //-- Code from Lab 03 --
 				//	***
 				//  ***Correct code for adding an image to a popup***
 				//  ***
@@ -254,16 +254,16 @@
 					L.marker(coordinateLocation[i]).addTo(map)
 						.bindPopup(locationPopup);
 				}
-		*/
 
 
-		/* -- Code from Lab 02 --
+
+		 //-- Code from Lab 02 --
 				// ADDING FIRST MARKER TO MAP
 
 				// creating a string of the Popup content
 				// call on array values using the appropriate index value for each MARKER
 				// nothing appears in map box when <img> is added to the popup string
-				var city1Popup = "<b>" + cities[0] + "</b>" +
+/*				var city1Popup = "<b>" + cities[0] + "</b>" +
 					"<br><b>population</b>: " + populations[0]; // + <img src="https://en.wikipedia.org/wiki/File:Flag_of_Florida.svg" alt="Florida sate flag" class="img-fill">;//
 
 				// if city is a capital city
@@ -310,7 +310,7 @@
 				L.marker(coords[2])
 					.addTo(map) // add it to the map
 					.bindPopup(city3Popup); // bind the Popup
-		*/
+*/
 	</script>
 
 </body>
