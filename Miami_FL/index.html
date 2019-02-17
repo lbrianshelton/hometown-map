@@ -224,7 +224,7 @@
 			}
 		];
 
-		const typeIconURL = ["svgs/svgs_01/beach-15.svg", "svgs/svgs_02/home-15.svg", "svgs/svgs_04/town-hall-15.svg"];
+		const typeIconURL = ["svgs/attraction-15.svg", "svgs/home-15.svg", "svgs/town-hall-15.svg"];
 
 
 		/* Lab 04 Challenge */
@@ -273,6 +273,8 @@
 		//-- Lab 05 -- for loop that runs through myLocations object//
 		for (var i in myLocations) {
 			console.log(createIcon(myLocations[i].properties.type))
+			var myIcon = createIcon(myLocations[i].properties.type)
+			console.log(myIcon)
 			var locationPopup =
 				"<h3>" +
 				myLocations[i].name +
@@ -285,7 +287,9 @@
 				myLocations[i].properties.img
 				
 
-			L.marker(myLocations[i].properties.coordinates)
+			L.marker(myLocations[i].properties.coordinates, {
+				icon: myIcon
+			})
 				.addTo(map)
 				.bindPopup(locationPopup);
 		}
