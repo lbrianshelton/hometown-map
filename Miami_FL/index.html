@@ -23,7 +23,7 @@
 		}
 
 		section {
-			width: 960px;
+			width: 80%;
 			margin: 20px auto;
 		}
 
@@ -198,7 +198,8 @@
 					population: 92307,
 					coordinates: [25.781844, -80.131335],
 					type: "Type 1",
-					details: "Beaches, art deco architecture, and nightlife."
+					details: "Beaches, art deco architecture, and nightlife.",
+					img: '<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >'
 				}
 			},
 			{
@@ -207,7 +208,8 @@
 					population: 38202,
 					coordinates: [25.964444, -80.135833],
 					type: "Type 2",
-					details: "Shopping, golf resorts, and boating."
+					details: "Shopping, golf resorts, and boating.",
+					img: '<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >'
 				}
 			},
 			{
@@ -216,7 +218,8 @@
 					population: 239673,
 					coordinates: [25.860556, -80.293889],
 					type: "Type 3",
-					details: "Cuban culture, latin cuisine, and Cafe Cubano."
+					details: "Cuban culture, latin cuisine, and Cafe Cubano.",
+					img: '<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >'
 				}
 			},
 		];
@@ -290,22 +293,19 @@
 */
 
 		//-- Lab 05 -- for loop that runs through myLocations object//
-		var i = 0;
 		for (var i in myLocations) {
 			var locationPopup =
 				"<h3>" +
 				myLocations[i].name +
 				"</h3>" +
-				"<p>" +
 				"<b>population</b>: " +
 				myLocations[i].properties.population +
-				"</p>" +
-				"<p>" +
+				"<br>" +
 				myLocations[i].properties.details +
-				"</p>" +
-				"<p>" +
-				'<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >' +
-				"</p>";
+				"<br>" +
+				myLocations[i].properties.img
+				
+
 			L.marker(myLocations[i].properties.coordinates)
 				.addTo(map)
 				.bindPopup(locationPopup);
