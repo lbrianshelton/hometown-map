@@ -191,10 +191,11 @@
 		]
 
 		/* Lab 05 Challenge */
-		// Build JS objects to contain arrays
+		// Build JS object to contain arrays
 		var myLocations = [{
 				name: "Miami Beach",
 				properties: {
+					population: 92307,
 					coordinates: [25.781844, -80.131335],
 					type: "Type 1",
 					details: "Beaches, art deco architecture, and nightlife."
@@ -203,6 +204,7 @@
 			{
 				name: "Aventura",
 				properties: {
+					population: 38202,
 					coordinates: [25.964444, -80.135833],
 					type: "Type 2",
 					details: "Shopping, golf resorts, and boating."
@@ -211,6 +213,7 @@
 			{
 				name: "Hialeah",
 				properties: {
+					population: 239673,
 					coordinates: [25.860556, -80.293889],
 					type: "Type 3",
 					details: "Cuban culture, latin cuisine, and Cafe Cubano."
@@ -221,7 +224,7 @@
 
 		/* Lab 04 Challenge */
 		// Group locations into categories for symbology
-	/*			const typeLocation = ["Type 1", "Type 2", "Type 3"];
+		/*			const typeLocation = ["Type 1", "Type 2", "Type 3"];
 
 				// URL for custom icon svg
 				const typeIconURL = ["svgs/svgs_01/beach-15.svg", "svgs/svgs_02/home-15.svg", "svgs/svgs_04/town-hall-15.svg"];
@@ -274,7 +277,7 @@
 		//  ***Correct code for adding an image to a popup***
 		//  ***
 		// for loop that creates popups -- runs through the nameLocation, cityPopulation, and coordinateLocation arrays. Pulls together the coordinates and information to display in popup marker.
-		for (var i = 0; i < nameLocation.length; i++) {
+		/*	for (var i = 0; i < nameLocation.length; i++) {
 			var nameCity = nameLocation[i];
 			var cityCoordinate = coordinateLocation[i];
 			var cityPops = cityPopulation[i];
@@ -284,7 +287,29 @@
 			L.marker(coordinateLocation[i]).addTo(map)
 				.bindPopup(locationPopup);
 		}
+*/
 
+		//-- Lab 05 -- for loop that runs through myLocations object//
+		var i = 0;
+		for (var i in myLocations) {
+			var locationPopup =
+				"<h3>" +
+				myLocations[i].name +
+				"</h3>" +
+				"<p>" +
+				"<b>population</b>: " +
+				myLocations[i].properties.population +
+				"</p>" +
+				"<p>" +
+				myLocations[i].properties.details +
+				"</p>" +
+				"<p>" +
+				'<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >' +
+				"</p>";
+			L.marker(myLocations[i].properties.coordinates)
+				.addTo(map)
+				.bindPopup(locationPopup);
+		}
 
 
 		//-- Code from Lab 02 --
