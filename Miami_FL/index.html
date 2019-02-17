@@ -77,6 +77,7 @@
 
 		/* This is a comment in CSS styles */
 	</style>
+
 </head>
 
 <body>
@@ -111,7 +112,6 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet-src.js"></script>
 	<script>
-
 		// map options
 		var options = {
 			center: [25.884307, -80.210117], // lat/lon values
@@ -190,127 +190,157 @@
 			[25.860556, -80.293889]
 		]
 
+		/* Lab 05 Challenge */
+		// Build JS objects to contain arrays
+		var myLocations = [{
+				name: "Miami Beach",
+				properties: {
+					coordinates: [25.781844, -80.131335],
+					type: "Type 1",
+					details: "Beaches, art deco architecture, and nightlife."
+				}
+			},
+			{
+				name: "Aventura",
+				properties: {
+					coordinates: [25.964444, -80.135833],
+					type: "Type 2",
+					details: "Shopping, golf resorts, and boating."
+				}
+			},
+			{
+				name: "Hialeah",
+				properties: {
+					coordinates: [25.860556, -80.293889],
+					type: "Type 3",
+					details: "Cuban culture, latin cuisine, and Cafe Cubano."
+				}
+			},
+		];
+
 
 		/* Lab 04 Challenge */
 		// Group locations into categories for symbology
-/*		const typeLocation = ["Type 1", "Type 2", "Type 3"];
+	/*			const typeLocation = ["Type 1", "Type 2", "Type 3"];
 
-		// URL for custom icon svg
-		const typeIconURL = ["svgs/svgs_01/beach-15.svg", "svgs/svgs_02/home-15.svg", "svgs/svgs_04/town-hall-15.svg"];
+				// URL for custom icon svg
+				const typeIconURL = ["svgs/svgs_01/beach-15.svg", "svgs/svgs_02/home-15.svg", "svgs/svgs_04/town-hall-15.svg"];
 
-		// Iterate through array using indexes to access values
-		for (let i = 0; i < nameLocation.length; i++) {
+				// Iterate through array using indexes to access values
+				for (let i = 0; i < nameLocation.length; i++) {
 
-			// Build the location popup
-			let locationPopup = `<h2>${nameLocation[i]}</h2> ${detailsLocation[i]}`;
+					// Build the location popup
+					let locationPopup = `<h2>${nameLocation[i]}</h2> ${detailsLocation[i]}`;
 
-			// Build Leaflet icon by calling a function to determine type of location
-			let iconLocation = createIcon(typeLocation[i]); // Function call
+					// Build Leaflet icon by calling a function to determine type of location
+					let iconLocation = createIcon(typeLocation[i]); // Function call
 
-			L.marker(coordinatesLocation[i], {
-					icon: iconLocation // Insert returned function value
-				})
-				.addTo(map)
-				.bindPopup(locationPopup);
-		};
-
-		// Function to determine type of location and return appropriate Leaflet icon object
-
-		function createIcon(typeOfLocation) {
-			let iconURL = "", // declare the iconURL
-				iconSize = 30; // create default size
-
-			if (typeOfLocation == "Type 1") {
-				iconURL = typeIconURL[0];
-			} else(typeOfLocation == "Type 2") {
-				iconURL = typeIconURL[1];
-				iconSize = 40;
-			};
-
-			// Create a Leaflet icon object
-			let result = L.icon({
-				iconUrl: iconURL,
-				iconSize: iconSize,
-				popupAnchor: [0, -15] // Center of your icon is [0,0]
-			});
-
-			// Function returns a properly formatted Leaf icon object to place on your map
-			return result;
-
-		};
-*/
-		 //-- Code from Lab 03 --
-				//	***
-				//  ***Correct code for adding an image to a popup***
-				//  ***
-				// for loop that creates popups -- runs through the nameLocation, cityPopulation, and coordinateLocation arrays. Pulls together the coordinates and information to display in popup marker.
-				for (var i = 0; i < nameLocation.length; i++) {
-					var nameCity = nameLocation[i];
-					var cityCoordinate = coordinateLocation[i];
-					var cityPops = cityPopulation[i];
-					var locationPopup = "<b>" + nameCity + "</b><br>" +
-						"<b>population</b>: " + cityPops + "</b><br>"
-						+ '<img src = "https://media-cdn.tripadvisor.com/media/photo-s/0c/da/2a/ea/photo2jpg.jpg" alt = "Miami Beach, Wikipedia" class = "img-fill" >';
-					L.marker(coordinateLocation[i]).addTo(map)
+					L.marker(coordinatesLocation[i], {
+							icon: iconLocation // Insert returned function value
+						})
+						.addTo(map)
 						.bindPopup(locationPopup);
-				}
+				};
 
+				// Function to determine type of location and return appropriate Leaflet icon object
 
+				function createIcon(typeOfLocation) {
+					let iconURL = "", // declare the iconURL
+						iconSize = 30; // create default size
 
-		 //-- Code from Lab 02 --
-				// ADDING FIRST MARKER TO MAP
+					if (typeOfLocation == "Type 1") {
+						iconURL = typeIconURL[0];
+					} else(typeOfLocation == "Type 2") {
+						iconURL = typeIconURL[1];
+						iconSize = 40;
+					};
 
-				// creating a string of the Popup content
-				// call on array values using the appropriate index value for each MARKER
-				// nothing appears in map box when <img> is added to the popup string
-/*				var city1Popup = "<b>" + cities[0] + "</b>" +
-					"<br><b>population</b>: " + populations[0]; // + <img src="https://en.wikipedia.org/wiki/File:Flag_of_Florida.svg" alt="Florida sate flag" class="img-fill">;//
+					// Create a Leaflet icon object
+					let result = L.icon({
+						iconUrl: iconURL,
+						iconSize: iconSize,
+						popupAnchor: [0, -15] // Center of your icon is [0,0]
+					});
 
-				// if city is a capital city
-				if (capitals[0] == true) {
-					// concatenate a string to the existing string value
-					city1Popup += "<br>Capital of " + states[0];
-				}
+					// Function returns a properly formatted Leaf icon object to place on your map
+					return result;
 
-				// create the Leaflet marker using the coordinates
-				L.marker(coords[0])
-					.addTo(map) // add it to the map
-					.bindPopup(city1Popup); // bind the Popup
-
-				// ADDING SECOND MARKER TO MAP
-
-				// creating a string of the Popup content
-				var city2Popup = "<b>" + cities[1] + "</b>" +
-					"<br><b>population</b>: " + populations[1];
-
-				// if city is a capital city
-				if (capitals[1] == true) {
-					// concatenate a string to the existing string value
-					city2Popup += "<br>Capital of " + states[1];
-				}
-
-				// create the Leaflet marker using the coordinates
-				L.marker(coords[1])
-					.addTo(map) // add it to the map
-					.bindPopup(city2Popup); // bind the Popup
-
-				// ADDING Third MARKER TO MAP
-
-				// creating a string of the Popup content
-				var city3Popup = "<b>" + cities[2] + "</b>" +
-					"<br><b>population</b>: " + populations[2];
-
-				// if city is a capital city
-				if (capitals[2] == true) {
-					// concatenate a string to the existing string value
-					city1Popup += "<br>Capital of " + states[2];
-				}
-
-				// create the Leaflet marker using the coordinates
-				L.marker(coords[2])
-					.addTo(map) // add it to the map
-					.bindPopup(city3Popup); // bind the Popup
+				};
 */
+
+
+		//-- Code from Lab 03 --
+		//	***
+		//  ***Correct code for adding an image to a popup***
+		//  ***
+		// for loop that creates popups -- runs through the nameLocation, cityPopulation, and coordinateLocation arrays. Pulls together the coordinates and information to display in popup marker.
+		for (var i = 0; i < nameLocation.length; i++) {
+			var nameCity = nameLocation[i];
+			var cityCoordinate = coordinateLocation[i];
+			var cityPops = cityPopulation[i];
+			var locationPopup = "<b>" + nameCity + "</b><br>" +
+				"<b>population</b>: " + cityPops + "</b><br>" +
+				'<img src = "https://media-cdn.tripadvisor.com/media/photo-s/0c/da/2a/ea/photo2jpg.jpg" alt = "Miami Beach, Wikipedia" class = "img-fill" >';
+			L.marker(coordinateLocation[i]).addTo(map)
+				.bindPopup(locationPopup);
+		}
+
+
+
+		//-- Code from Lab 02 --
+		// ADDING FIRST MARKER TO MAP
+
+		// creating a string of the Popup content
+		// call on array values using the appropriate index value for each MARKER
+		// nothing appears in map box when <img> is added to the popup string
+		/*				var city1Popup = "<b>" + cities[0] + "</b>" +
+							"<br><b>population</b>: " + populations[0]; // + <img src="https://en.wikipedia.org/wiki/File:Flag_of_Florida.svg" alt="Florida sate flag" class="img-fill">;//
+
+						// if city is a capital city
+						if (capitals[0] == true) {
+							// concatenate a string to the existing string value
+							city1Popup += "<br>Capital of " + states[0];
+						}
+
+						// create the Leaflet marker using the coordinates
+						L.marker(coords[0])
+							.addTo(map) // add it to the map
+							.bindPopup(city1Popup); // bind the Popup
+
+						// ADDING SECOND MARKER TO MAP
+
+						// creating a string of the Popup content
+						var city2Popup = "<b>" + cities[1] + "</b>" +
+							"<br><b>population</b>: " + populations[1];
+
+						// if city is a capital city
+						if (capitals[1] == true) {
+							// concatenate a string to the existing string value
+							city2Popup += "<br>Capital of " + states[1];
+						}
+
+						// create the Leaflet marker using the coordinates
+						L.marker(coords[1])
+							.addTo(map) // add it to the map
+							.bindPopup(city2Popup); // bind the Popup
+
+						// ADDING Third MARKER TO MAP
+
+						// creating a string of the Popup content
+						var city3Popup = "<b>" + cities[2] + "</b>" +
+							"<br><b>population</b>: " + populations[2];
+
+						// if city is a capital city
+						if (capitals[2] == true) {
+							// concatenate a string to the existing string value
+							city1Popup += "<br>Capital of " + states[2];
+						}
+
+						// create the Leaflet marker using the coordinates
+						L.marker(coords[2])
+							.addTo(map) // add it to the map
+							.bindPopup(city3Popup); // bind the Popup
+		*/
 	</script>
 
 </body>
