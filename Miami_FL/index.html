@@ -221,8 +221,10 @@
 					details: "Cuban culture, latin cuisine, and Cafe Cubano.",
 					img: '<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >'
 				}
-			},
+			}
 		];
+
+		const typeIconURL = ["svgs/svgs_01/beach-15.svg", "svgs/svgs_02/home-15.svg", "svgs/svgs_04/town-hall-15.svg"];
 
 
 		/* Lab 04 Challenge */
@@ -230,7 +232,7 @@
 		/*			const typeLocation = ["Type 1", "Type 2", "Type 3"];
 
 				// URL for custom icon svg
-				const typeIconURL = ["svgs/svgs_01/beach-15.svg", "svgs/svgs_02/home-15.svg", "svgs/svgs_04/town-hall-15.svg"];
+				
 
 				// Iterate through array using indexes to access values
 				for (let i = 0; i < nameLocation.length; i++) {
@@ -248,31 +250,7 @@
 						.bindPopup(locationPopup);
 				};
 
-				// Function to determine type of location and return appropriate Leaflet icon object
-
-				function createIcon(typeOfLocation) {
-					let iconURL = "", // declare the iconURL
-						iconSize = 30; // create default size
-
-					if (typeOfLocation == "Type 1") {
-						iconURL = typeIconURL[0];
-					} else(typeOfLocation == "Type 2") {
-						iconURL = typeIconURL[1];
-						iconSize = 40;
-					};
-
-					// Create a Leaflet icon object
-					let result = L.icon({
-						iconUrl: iconURL,
-						iconSize: iconSize,
-						popupAnchor: [0, -15] // Center of your icon is [0,0]
-					});
-
-					// Function returns a properly formatted Leaf icon object to place on your map
-					return result;
-
-				};
-*/
+				
 
 
 		//-- Code from Lab 03 --
@@ -294,6 +272,7 @@
 
 		//-- Lab 05 -- for loop that runs through myLocations object//
 		for (var i in myLocations) {
+			console.log(createIcon(myLocations[i].properties.type))
 			var locationPopup =
 				"<h3>" +
 				myLocations[i].name +
@@ -310,6 +289,35 @@
 				.addTo(map)
 				.bindPopup(locationPopup);
 		}
+
+
+		// Function to determine type of location and return appropriate Leaflet icon object
+
+		function createIcon(typeOfLocation) {
+					let iconURL = "", // declare the iconURL
+						iconSize = 30; // create default size
+
+					if (typeOfLocation == "Type 1") {
+						iconURL = typeIconURL[0];
+					} else if (typeOfLocation == "Type 2") {
+						iconURL = typeIconURL[1];
+						iconSize = 40;
+					} else {
+						iconURL = typeIconURL[2];
+					}
+
+					// Create a Leaflet icon object
+					let result = L.icon({
+						iconUrl: iconURL,
+						iconSize: iconSize,
+						popupAnchor: [0, -15] // Center of your icon is [0,0]
+					});
+
+					// Function returns a properly formatted Leaf icon object to place on your map
+					return result;
+
+				};
+
 
 
 		//-- Code from Lab 02 --
