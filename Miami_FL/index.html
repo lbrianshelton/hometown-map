@@ -23,7 +23,7 @@
 		}
 
 		section {
-			width: 960px;
+			width: 80%;
 			margin: 20px auto;
 		}
 
@@ -198,7 +198,8 @@
 					population: 92307,
 					coordinates: [25.781844, -80.131335],
 					type: "Type 1",
-					details: "Beaches, art deco architecture, and nightlife."
+					details: "Beaches, art deco architecture, and nightlife.",
+					img: '<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >'
 				}
 			},
 			{
@@ -207,7 +208,8 @@
 					population: 38202,
 					coordinates: [25.964444, -80.135833],
 					type: "Type 2",
-					details: "Shopping, golf resorts, and boating."
+					details: "Shopping, golf resorts, and boating.",
+					img: '<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >'
 				}
 			},
 			{
@@ -216,10 +218,13 @@
 					population: 239673,
 					coordinates: [25.860556, -80.293889],
 					type: "Type 3",
-					details: "Cuban culture, latin cuisine, and Cafe Cubano."
+					details: "Cuban culture, latin cuisine, and Cafe Cubano.",
+					img: '<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >'
 				}
-			},
+			}
 		];
+
+		const typeIconURL = ["svgs/attraction-15.svg", "svgs/home-15.svg", "svgs/town-hall-15.svg"];
 
 
 		/* Lab 04 Challenge */
@@ -227,7 +232,7 @@
 		/*			const typeLocation = ["Type 1", "Type 2", "Type 3"];
 
 				// URL for custom icon svg
-				const typeIconURL = ["svgs/svgs_01/beach-15.svg", "svgs/svgs_02/home-15.svg", "svgs/svgs_04/town-hall-15.svg"];
+				
 
 				// Iterate through array using indexes to access values
 				for (let i = 0; i < nameLocation.length; i++) {
@@ -245,31 +250,7 @@
 						.bindPopup(locationPopup);
 				};
 
-				// Function to determine type of location and return appropriate Leaflet icon object
-
-				function createIcon(typeOfLocation) {
-					let iconURL = "", // declare the iconURL
-						iconSize = 30; // create default size
-
-					if (typeOfLocation == "Type 1") {
-						iconURL = typeIconURL[0];
-					} else(typeOfLocation == "Type 2") {
-						iconURL = typeIconURL[1];
-						iconSize = 40;
-					};
-
-					// Create a Leaflet icon object
-					let result = L.icon({
-						iconUrl: iconURL,
-						iconSize: iconSize,
-						popupAnchor: [0, -15] // Center of your icon is [0,0]
-					});
-
-					// Function returns a properly formatted Leaf icon object to place on your map
-					return result;
-
-				};
-*/
+				
 
 
 		//-- Code from Lab 03 --
@@ -290,26 +271,57 @@
 */
 
 		//-- Lab 05 -- for loop that runs through myLocations object//
-		var i = 0;
 		for (var i in myLocations) {
+			console.log(createIcon(myLocations[i].properties.type))
+			var myIcon = createIcon(myLocations[i].properties.type)
+			console.log(myIcon)
 			var locationPopup =
 				"<h3>" +
 				myLocations[i].name +
 				"</h3>" +
-				"<p>" +
 				"<b>population</b>: " +
 				myLocations[i].properties.population +
-				"</p>" +
-				"<p>" +
+				"<br>" +
 				myLocations[i].properties.details +
-				"</p>" +
-				"<p>" +
-				'<img src = "https://www.visitflorida.com/content/dam/visitflorida/en-us/images/articles/2011/march/1300805920_miami_cocktail-hour-at-cafe-sambal_sm.jpg.270.180.rendition" alt = "Miami Beach, Wikipedia" class = "img-fill" >' +
-				"</p>";
-			L.marker(myLocations[i].properties.coordinates)
+				"<br>" +
+				myLocations[i].properties.img
+				
+
+			L.marker(myLocations[i].properties.coordinates, {
+				icon: myIcon
+			})
 				.addTo(map)
 				.bindPopup(locationPopup);
 		}
+
+
+		// Function to determine type of location and return appropriate Leaflet icon object
+
+		function createIcon(typeOfLocation) {
+					let iconURL = "", // declare the iconURL
+						iconSize = 30; // create default size
+
+					if (typeOfLocation == "Type 1") {
+						iconURL = typeIconURL[0];
+					} else if (typeOfLocation == "Type 2") {
+						iconURL = typeIconURL[1];
+						iconSize = 40;
+					} else {
+						iconURL = typeIconURL[2];
+					}
+
+					// Create a Leaflet icon object
+					let result = L.icon({
+						iconUrl: iconURL,
+						iconSize: iconSize,
+						popupAnchor: [0, -15] // Center of your icon is [0,0]
+					});
+
+					// Function returns a properly formatted Leaf icon object to place on your map
+					return result;
+
+				};
+
 
 
 		//-- Code from Lab 02 --
